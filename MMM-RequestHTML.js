@@ -28,27 +28,6 @@ Module.register("MMM-RequestHTML", {
 		this.sendSocketNotification('CONFIG', this.config);
 	},
 
-	
-
-
-	/* scheduleUpdate()
-	 * Schedule next update.
-	 *
-	 * argument delay number - Milliseconds before next update.
-	 *  If empty, this.config.updateInterval is used.
-	 */
-	scheduleUpdate: function(delay) {
-		var nextLoad = this.config.updateInterval;
-		if (typeof delay !== "undefined" && delay >= 0) {
-			nextLoad = delay;
-		}
-		nextLoad = nextLoad ;
-		var self = this;
-		setTimeout(function() {
-			self.getData();
-		}, nextLoad);
-	},
-
 	getDom: function() {
 		var self = this;
 
