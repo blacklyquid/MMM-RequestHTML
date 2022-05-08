@@ -25,7 +25,31 @@ module.exports = NodeHelper.create({
 			this.sendNotificationTest(this.anotherFunction()); //Is possible send objects :)
 		}
 	},
+	/*
+	 * getData
+	 * function example return data and show it in the module wrapper
+	 * get a URL request
+	 *
+	 */
+	getData: function() {
+		var self = this;
 
+		var urlApi = this.config.urlApi; //"https://jsonplaceholder.typicode.com/posts/1";
+		var retry = true;
+		request({
+				url: myUrl,
+				method: 'GET'
+			}, function (error, response, body) {
+			
+				if (!error && response.statusCode == 200) {
+					self.sendSocketNotification("DATA", body);
+				} else {
+					console.log("Error loading");
+				}
+					
+					
+		});
+	},
 	// Example function send notification test
 	sendNotificationTest: function(payload) {
 		this.sendSocketNotification("MMM-RequestHTML-NOTIFICATION_TEST", payload);
