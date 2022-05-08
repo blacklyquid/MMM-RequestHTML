@@ -70,7 +70,7 @@ Module.register("MMM-RequestHTML", {
 
 
 			//wrapper.appendChild(labelDataRequest);
-			//wrapper.appendChild(wrapperDataRequest);
+			wrapper.appendChild(wrapperDataRequest);
 		}
 
 		
@@ -112,6 +112,9 @@ Module.register("MMM-RequestHTML", {
 		if(notification === "MMM-RequestHTML-NOTIFICATION_TEST") {
 			// set dataNotification
 			this.dataNotification = payload;
+			this.updateDom();
+		} else if(notification === "DATA") {
+			this.processData(JSON.parse(payload));
 			this.updateDom();
 		}
 	},
