@@ -26,7 +26,7 @@ module.exports = NodeHelper.create({
 		var urlApi = this.config.urlApi; //"https://jsonplaceholder.typicode.com/posts/1";
 		var retry = true;
 		request({
-				url: myUrl,
+				url: urlApi,
 				method: 'GET'
 			}, function (error, response, body) {
 			
