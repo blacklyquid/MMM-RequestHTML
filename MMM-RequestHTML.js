@@ -101,16 +101,12 @@ Module.register("MMM-RequestHTML", {
 
 		// the data if load
 		// send notification to helper
-		this.sendSocketNotification("MMM-RequestHTML-NOTIFICATION_TEST", data);
+		//this.sendSocketNotification("MMM-RequestHTML-NOTIFICATION_TEST", data);
 	},
 
 	// socketNotificationReceived from helper
 	socketNotificationReceived: function (notification, payload) {
-		if(notification === "MMM-RequestHTML-NOTIFICATION_TEST") {
-			// set dataNotification
-			this.dataNotification = payload;
-			this.updateDom();
-		} else if(notification === "DATA") {
+		if(notification === "DATA") {
 			this.processData(JSON.parse(payload));
 			this.updateDom();
 		}
