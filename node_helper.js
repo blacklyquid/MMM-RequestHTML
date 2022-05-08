@@ -6,6 +6,7 @@
  */
 
 var NodeHelper = require("node_helper");
+var request = require('request');
 
 module.exports = NodeHelper.create({
 
