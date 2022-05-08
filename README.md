@@ -13,16 +13,10 @@ var config = {
         {
             module: 'MMM-RequestHTML',
             config: {
-                // See below for configurable options
+                updateInterval: 60000,
+		        retryDelay: 5000,
+		        urlApi: 'YOUR URL HERE'
             }
         }
     ]
 }
-```
-
-## Configuration options
-
-| Option           | Description
-|----------------- |-----------
-| `option1`        | *Required* DESCRIPTION HERE
-| `option2`        | *Optional* DESCRIPTION HERE TOO <br><br>**Type:** `int`(milliseconds) <br>Default 60000 milliseconds (1 minute)
