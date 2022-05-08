@@ -14,8 +14,8 @@ var config = {
             module: 'MMM-RequestHTML',
             config: {
                 updateInterval: 60000,
-		        retryDelay: 5000,
-		        urlApi: 'YOUR URL HERE'
+		retryDelay: 5000,
+		urlApi: 'YOUR URL HERE'
             }
         }
     ]
