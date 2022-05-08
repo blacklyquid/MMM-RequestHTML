@@ -13,17 +13,7 @@ module.exports = NodeHelper.create({
 		this.started = false;
 		this.config = null;
 	},
-	socketNotificationReceived: function(notification, payload) {
-		var self = this;
-		Log.info('notification started: ' + this.name);
-		if (notification === 'CONFIG' && self.started == false) {
-			self.config = payload;
-			self.sendSocketNotification("STARTED", true);
-			self.getData();
-			self.started = true;
-			Log.info('notification in if: ' + this.name);
-		}
-	}
+
 	/*
 	 * getData
 	 * function example return data and show it in the module wrapper
@@ -50,5 +40,16 @@ module.exports = NodeHelper.create({
 					
 		});
 		setTimeout(function() { self.getData(); }, this.config.refreshInterval);
-	}
+	},
+	socketNotificationReceived: function(notification, payload) {
+		var self = this;
+		Log.info('notification started: ' + this.name);
+		if (notification === 'CONFIG' && self.started == false) {
+			self.config = payload;
+			self.sendSocketNotification("STARTED", true);
+			self.getData();
+			self.started = true;
+			Log.info('notification in if: ' + this.name);
+		}
+	},
 });
