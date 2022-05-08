@@ -5,7 +5,7 @@
  * MIT Licensed.
  */
 
-var NodeHelper = require("node_helper");
+const NodeHelper = require("node_helper");
 var request = require('request');
 
 module.exports = NodeHelper.create({
@@ -31,7 +31,7 @@ module.exports = NodeHelper.create({
 			}, function (error, response, body) {
 			
 				if (!error && response.statusCode == 200) {
-					self.sendSocketNotification("DATA", body);
+					self.sendSocketNotification("MMM-RequestHTML-DATA", body);
 					Log.info(body + ' : ' + this.name);
 				} else {
 					console.log("Error loading");
@@ -44,7 +44,7 @@ module.exports = NodeHelper.create({
 	socketNotificationReceived: function(notification, payload) {
 		var self = this;
 		Log.info('notification started: ' + this.name);
-		if (notification === 'CONFIG' && self.started == false) {
+		if (notification === 'MMM-RequestHTML-CONFIG' && self.started == false) {
 			self.config = payload;
 			self.sendSocketNotification("STARTED", true);
 			self.getData();
