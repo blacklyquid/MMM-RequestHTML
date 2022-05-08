@@ -9,7 +9,10 @@ var NodeHelper = require("node_helper");
 var request = require('request');
 
 module.exports = NodeHelper.create({
-
+	start: function() {
+		this.started = false;
+		this.config = null;
+	},
 	socketNotificationReceived: function(notification, payload) {
 		var self = this;
 		if (notification === 'CONFIG' && self.started == false) {
