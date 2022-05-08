@@ -17,7 +17,7 @@ Module.register("MMM-RequestHTML", {
 	requiresVersion: "2.1.0", // Required version of MagicMirror
 		
 	start: function() {
-		Log.info('Starting module: ' + this.name);
+		Log.info('Startinged module: ' + this.name);
 		var self = this;
 		var dataRequest = null;
 		var dataNotification = null;
