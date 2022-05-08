@@ -40,7 +40,7 @@ Module.register("MMM-RequestHTML", {
 	getData: function() {
 		var self = this;
 
-		var urlApi = self.config.urlApi; //"https://jsonplaceholder.typicode.com/posts/1";
+		var urlApi = this.config.urlApi; //"https://jsonplaceholder.typicode.com/posts/1";
 		var retry = true;
 
 		var dataRequest = new XMLHttpRequest();
@@ -106,14 +106,7 @@ Module.register("MMM-RequestHTML", {
 			//wrapper.appendChild(wrapperDataRequest);
 		}
 
-		// Data from helper
-		if (this.dataNotification) {
-			var wrapperDataNotification = document.createElement("div");
-			// translations  + datanotification
-			wrapperDataNotification.innerHTML =  this.translate("UPDATE") + ": " + this.dataNotification.date;
-
-			wrapper.appendChild(wrapperDataNotification);
-		}
+		
 		return wrapper;
 	},
 
