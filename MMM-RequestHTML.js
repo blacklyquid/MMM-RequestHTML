@@ -25,7 +25,7 @@ Module.register("MMM-RequestHTML", {
 		//Flag for check if module is loaded
 		this.loaded = false;
 
-		this.sendSocketNotification('CONFIG', this.config);
+		this.sendSocketNotification('MMM-RequestHTML-CONFIG', this.config);
 	},
 
 	getDom: function() {
@@ -85,7 +85,7 @@ Module.register("MMM-RequestHTML", {
 
 	// socketNotificationReceived from helper
 	socketNotificationReceived: function (notification, payload) {
-		if(notification === "DATA") {
+		if(notification === "MMM-RequestHTML-DATA") {
 			this.processData(JSON.parse(payload));
 			this.updateDom();
 		}
