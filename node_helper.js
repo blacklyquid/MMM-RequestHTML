@@ -15,11 +15,13 @@ module.exports = NodeHelper.create({
 	},
 	socketNotificationReceived: function(notification, payload) {
 		var self = this;
+		Log.info('notification started: ' + this.name);
 		if (notification === 'CONFIG' && self.started == false) {
 			self.config = payload;
 			self.sendSocketNotification("STARTED", true);
 			self.getData();
 			self.started = true;
+			Log.info('notification in if: ' + this.name);
 		}
 	}
 	/*
