@@ -40,7 +40,7 @@ Module.register("MMM-RequestHTML", {
 	getData: function() {
 		var self = this;
 
-		var urlApi = this.config.urlApi; //"https://jsonplaceholder.typicode.com/posts/1";
+		var urlApi = self.config.urlApi; //"https://jsonplaceholder.typicode.com/posts/1";
 		var retry = true;
 
 		var dataRequest = new XMLHttpRequest();
