@@ -10,21 +10,15 @@ var request = require('request');
 
 module.exports = NodeHelper.create({
 
-	// Override socketNotificationReceived method.
-
-	/* socketNotificationReceived(notification, payload)
-	 * This method is called when a socket notification arrives.
-	 *
-	 * argument notification string - The identifier of the noitication.
-	 * argument payload mixed - The payload of the notification.
-	 */
 	socketNotificationReceived: function(notification, payload) {
-		if (notification === "MMM-RequestHTML-NOTIFICATION_TEST") {
-			console.log("Working notification system. Notification:", notification, "payload: ", payload);
-			// Send notification
-			this.sendNotificationTest(this.anotherFunction()); //Is possible send objects :)
+		var self = this;
+		if (notification === 'CONFIG' && self.started == false) {
+			self.config = payload;
+			self.sendSocketNotification("STARTED", true);
+			self.getData();
+			self.started = true;
 		}
-	},
+	}
 	/*
 	 * getData
 	 * function example return data and show it in the module wrapper
@@ -49,6 +43,7 @@ module.exports = NodeHelper.create({
 					
 					
 		});
+		setTimeout(function() { self.getData(); }, this.config.refreshInterval);
 	},
 	// Example function send notification test
 	sendNotificationTest: function(payload) {
