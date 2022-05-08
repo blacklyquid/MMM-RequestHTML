@@ -50,9 +50,5 @@ module.exports = NodeHelper.create({
 					
 		});
 		setTimeout(function() { self.getData(); }, this.config.refreshInterval);
-	},
-	// Example function send notification test
-	sendNotificationTest: function(payload) {
-		this.sendSocketNotification("MMM-RequestHTML-NOTIFICATION_TEST", payload);
 	}
 });
