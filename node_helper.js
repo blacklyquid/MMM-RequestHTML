@@ -31,7 +31,7 @@ module.exports = NodeHelper.create({
 			}, function (error, response, body) {
 			
 				if (!error && response.statusCode == 200) {
-					self.sendSocketNotification("MMM-RequestHTML-DATA", body);
+					self.sendSocketNotification("MMM-RequestHTML_DATA", body);
 					Log.info(body + ' : ' + this.name);
 				} else {
 					console.log("Error loading");
@@ -44,7 +44,7 @@ module.exports = NodeHelper.create({
 	socketNotificationReceived: function(notification, payload) {
 		var self = this;
 		Log.info('notification started: ' + this.name);
-		if (notification === 'MMM-RequestHTML-CONFIG' && self.started == false) {
+		if (notification === 'MMM-RequestHTML_CONFIG' && self.started == false) {
 			self.config = payload;
 			self.sendSocketNotification("STARTED", true);
 			self.getData();
