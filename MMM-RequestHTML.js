@@ -14,7 +14,8 @@ Module.register("MMM-RequestHTML", {
 		updateInterval: 3000,
 		noDataText: "No Data",
 		url: "https://jsonplaceholder.typicode.com/posts/1",
-		animationSpeed: 500
+		animationSpeed: 500,
+		loadingText: "Loading..."
 	},
 		
 	start() {
@@ -47,7 +48,7 @@ Module.register("MMM-RequestHTML", {
 		const wrapper = document.createElement("div");
 		
 		if (!this.htmlData) {
-			wrapper.innerHTML = "Awaiting json data...";
+			wrapper.innerHTML = this.config.loadingText;
 			return wrapper;
 		}
 		
