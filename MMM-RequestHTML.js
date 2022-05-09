@@ -36,7 +36,7 @@ Module.register("MMM-RequestHTML", {
 			// Only continue if the notification came from the request we made
 			// This way we can load the module more than once
 			if (payload.url === this.config.url) {
-				Log.log("HTML="+payload.data.html);
+				//Log.log("HTML="+payload.data.html);
 				this.htmlData = payload.data;
 				this.updateDom(this.config.animationSpeed);
 			}
