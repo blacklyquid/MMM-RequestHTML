@@ -8,86 +8,49 @@
  */
 
 Module.register("MMM-RequestHTML", {
+	htmlData: null,
+	
 	defaults: {
-		updateInterval: 60000,
-		retryDelay: 5000,
-		urlApi: "https://jsonplaceholder.typicode.com/posts/1"
+		updateInterval: 3000,
+		noDataText: "No Data",
+		url: "https://jsonplaceholder.typicode.com/posts/1",
+		animationSpeed: 500
 	},
-
-	requiresVersion: "2.1.0", // Required version of MagicMirror
 		
-	start: function() {
-		Log.info('Startinged module: ' + this.name);
-		var self = this;
-		var dataRequest = null;
-		var dataNotification = null;
-
-		//Flag for check if module is loaded
-		this.loaded = false;
-
-		this.sendSocketNotification('MMM-RequestHTML_CONFIG', this.config);
+	start() {
+		this.getJson();
+		this.scheduleUpdate();
 	},
-
-	getDom: function() {
-		var self = this;
-
-		// create element wrapper for show into the module
-		var wrapper = document.createElement("div");
-		// If this.dataRequest is not empty
-		if (this.dataRequest) {
-			var wrapperDataRequest = document.createElement("div");
-			// check format https://jsonplaceholder.typicode.com/posts/1
-			wrapperDataRequest.innerHTML = this.dataRequest.html;
-
-			//var labelDataRequest = document.createElement("label");
-			// Use translate function
-			//             this id defined in translations files
-			//labelDataRequest.innerHTML = this.translate("TITLE");
-
-
-			//wrapper.appendChild(labelDataRequest);
-			wrapper.appendChild(wrapperDataRequest);
+	scheduleUpdate() {
+		const self = this;
+		setInterval(() => {
+			self.getJson();
+		}, this.config.updateInterval);
+	},
+	getJson() {
+		this.sendSocketNotification("MMM-RequestHTML_GET_JSON", this.config.url);
+	},
+	socketNotificationReceived(notification, payload) {
+		if (notification === "MMM-RequestHTML_JSON_RESULT") {
+			// Only continue if the notification came from the request we made
+			// This way we can load the module more than once
+			if (payload.url === this.config.url) {
+				this.htmlData = payload.data;
+				this.updateDom(this.config.animationSpeed);
+			}
 		}
-
+	},
+	getDom() {
+		// create element wrapper for show into the module
+		const wrapper = document.createElement("div");
+		
+		if (!this.htmlData) {
+			wrapper.innerHTML = "Awaiting json data...";
+			return wrapper;
+		}
+		
+		wrapper.innerHTML = this.htmlData;
 		
 		return wrapper;
-	},
-
-	getScripts: function() {
-		return [];
-	},
-
-	getStyles: function () {
-		return [
-			"MMM-RequestHTML.css",
-		];
-	},
-
-	// Load translations files
-	getTranslations: function() {
-		//FIXME: This can be load a one file javascript definition
-		return {
-			en: "translations/en.json",
-			es: "translations/es.json"
-		};
-	},
-
-	processData: function(data) {
-		var self = this;
-		this.dataRequest = data;
-		if (this.loaded === false) { self.updateDom(self.config.animationSpeed) ; }
-		this.loaded = true;
-
-		// the data if load
-		// send notification to helper
-		//this.sendSocketNotification("MMM-RequestHTML-NOTIFICATION_TEST", data);
-	},
-
-	// socketNotificationReceived from helper
-	socketNotificationReceived: function (notification, payload) {
-		if(notification === "MMM-RequestHTML_DATA") {
-			this.processData(JSON.parse(payload));
-			this.updateDom();
-		}
 	},
 });
