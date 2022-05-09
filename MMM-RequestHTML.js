@@ -18,6 +18,7 @@ Module.register("MMM-RequestHTML", {
 	},
 		
 	start() {
+		Log.log("MMM-RequestHTML Started...");
 		this.getJson();
 		this.scheduleUpdate();
 	},
@@ -49,7 +50,7 @@ Module.register("MMM-RequestHTML", {
 			return wrapper;
 		}
 		
-		wrapper.innerHTML = this.htmlData.html;
+		wrapper.innerHTML = this.htmlData;
 		
 		return wrapper;
 	},
