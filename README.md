@@ -5,7 +5,7 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 This module retrieves HTML from a url and displays it.
 
 JSON response format
-{ html: "<b>html</b><p>and stuff</p>" }
+{ html: "THE HTML TO DISPLAY" }
 
 ## Using the module
 
@@ -17,6 +17,7 @@ To use this module, add the following configuration block to the modules array i
                 updateInterval: 3000,
 		url: "https://jsonplaceholder.typicode.com/posts/1",
 		noDataText: "uhhh ohhh",
-		animationSpeed: 500
+		animationSpeed: 500,
+		loadingText: "Loading..."
             }
         }
