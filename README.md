@@ -11,13 +11,13 @@ JSON response format
 
 To use this module, add the following configuration block to the modules array in the `config/config.js` file:
 
-        {
-            module: 'MMM-RequestHTML',
-            config: {
-                updateInterval: 3000,
+{
+	module: 'MMM-RequestHTML',
+	config: {
+		updateInterval: 3000,
 		url: "https://jsonplaceholder.typicode.com/posts/1",
 		noDataText: "uhhh ohhh",
 		animationSpeed: 500,
 		loadingText: "Loading..."
-            }
-        }
+	}
+}
