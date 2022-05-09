@@ -1,55 +1,33 @@
-/* Magic Mirror
- * Node Helper: MMM-RequestHTML
- *
- * By 
- * MIT Licensed.
- */
-
 const NodeHelper = require("node_helper");
-var request = require('request');
+const Log = require("logger");
+
+const fetch = (...args) =>
+  // eslint-disable-next-line no-shadow
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 module.exports = NodeHelper.create({
-	start: function() {
-		this.started = false;
-		this.config = null;
+	start() {
+		Log.log("MMM-RequestHTML helper started...");
 	},
 
-	/*
-	 * getData
-	 * function example return data and show it in the module wrapper
-	 * get a URL request
-	 *
-	 */
-	getData: function() {
-		var self = this;
-		Log.info('Getting Data: ' + this.name);
-		var urlApi = this.config.urlApi; //"https://jsonplaceholder.typicode.com/posts/1";
-		var retry = true;
-		request({
-				url: urlApi,
-				method: 'GET'
-			}, function (error, response, body) {
-			
-				if (!error && response.statusCode == 200) {
-					self.sendSocketNotification("MMM-RequestHTML_DATA", body);
-					Log.info(body + ' : ' + this.name);
-				} else {
-					console.log("Error loading");
-				}
-					
-					
+	getJson(url) {
+		const self = this;
+
+		fetch(url)
+		.then((response) => response.json())
+		.then((json) => {
+			// Send the json data back with the url to distinguish it on the receiving part
+			self.sendSocketNotification("MMM-RequestHTML_JSON_RESULT", {
+				url,
+				data: json
+			});
 		});
-		setTimeout(function() { self.getData(); }, this.config.refreshInterval);
 	},
-	socketNotificationReceived: function(notification, payload) {
-		var self = this;
-		Log.info('notification started: ' + this.name);
-		if (notification === 'MMM-RequestHTML_CONFIG' && self.started == false) {
-			self.config = payload;
-			self.sendSocketNotification("STARTED", true);
-			self.getData();
-			self.started = true;
-			Log.info('notification in if: ' + this.name);
+
+	// Subclass socketNotificationReceived received.
+	socketNotificationReceived(notification, url) {
+		if (notification === "MMM-RequestHTML_GET_JSON") {
+			this.getJson(url);
 		}
-	},
+	}
 });
