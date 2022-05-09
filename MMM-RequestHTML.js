@@ -49,7 +49,7 @@ Module.register("MMM-RequestHTML", {
 			return wrapper;
 		}
 		
-		wrapper.innerHTML = this.htmlData;
+		wrapper.innerHTML = this.htmlData.html;
 		
 		return wrapper;
 	},
