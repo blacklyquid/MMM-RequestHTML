@@ -23,5 +23,5 @@ To use this module, add the following configuration block to the modules array i
 		animationSpeed: 500,
 		loadingText: "Loading..."
 	}
-}
+},
 ```
