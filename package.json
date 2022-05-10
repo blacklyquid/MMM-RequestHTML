@@ -5,6 +5,9 @@
   "main": "MMM-RequestHTML.js",
   "author": "",
   "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.2.4"
+  },
   "devDependencies": {
     "grunt": "latest",
     "grunt-eslint": "latest",
@@ -13,6 +16,6 @@
     "grunt-stylelint": "latest",
     "grunt-yamllint": "latest",
     "stylelint-config-standard": "latest",
-    "time-grunt": "latest"
+    "time-grunt": "latest",
   }
 }
