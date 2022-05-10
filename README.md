@@ -4,7 +4,7 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 
 This module retrieves HTML from a url and displays it.
 
-JSON response format
+## JSON response format
 ```
 {  html: "THE HTML TO DISPLAY"  }
 ```
