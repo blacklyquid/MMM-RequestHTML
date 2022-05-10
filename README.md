@@ -6,7 +6,7 @@ This module retrieves HTML from a url and displays it.
 
 JSON response format
 ```
-{ html: "THE HTML TO DISPLAY" }
+{  html: "THE HTML TO DISPLAY"  }
 ```
 
 ## Using the module
