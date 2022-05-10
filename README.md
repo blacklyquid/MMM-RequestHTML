@@ -11,6 +11,7 @@ JSON response format
 
 To use this module, add the following configuration block to the modules array in the `config/config.js` file:
 
+```javascript
 {
 	module: 'MMM-RequestHTML',
 	config: {
@@ -21,3 +22,4 @@ To use this module, add the following configuration block to the modules array i
 		loadingText: "Loading..."
 	}
 }
+```
