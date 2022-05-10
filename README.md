@@ -2,8 +2,13 @@
 
 This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/).
 
-This module retrieves HTML from a url and displays it.
-
+The module retrieves HTML from a url and displays it.
+## Installation
+```
+git clone https://github.com/blacklyquid/MMM-RequestHTML.git
+cd MMM-RequestHTML
+npm install
+```
 ## JSON response format
 ```
 {  html: "THE HTML TO DISPLAY"  }
