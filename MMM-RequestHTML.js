@@ -12,7 +12,6 @@ Module.register("MMM-RequestHTML", {
 	
 	defaults: {
 		updateInterval: 3000,
-		noDataText: "No Data",
 		url: "https://jsonplaceholder.typicode.com/posts/1",
 		animationSpeed: 500,
 		loadingText: "Loading..."
